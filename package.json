@@ -1,0 +1,7 @@
+{
+    "scripts": {
+        "install:back": "cd BACK && npm install",
+        "install:front": "cd FRONT && yarn",
+        "run:all":"cd BACK && npm start & cd FRONT && yarn start"
+    }
+}

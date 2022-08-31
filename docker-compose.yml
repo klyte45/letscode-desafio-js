@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  desafio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: desafio    
+    environment:
+      NODE_ENV: prod      
+    ports:
+      - "127.0.0.1:5000:5000"
+      - "127.0.0.1:3000:3000"
+volumes:
+  logvolume01: {}

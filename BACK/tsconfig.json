@@ -18,17 +18,8 @@
     ],
     "baseUrl": "./",
     "paths": {
-      "#db/*": [
-        "src/db/*"
-      ],
-      "#controllers/*": [
-        "src/controllers/*"
-      ],
       "#interfaces/*": [
         "src/interfaces/*"
-      ],
-      "#services/*": [
-        "src/services/*"
       ]
     }
   }

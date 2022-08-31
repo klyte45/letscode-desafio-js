@@ -1,5 +1,3 @@
-import { CardController } from '#controllers/CardController';
-import { LoginController } from '#controllers/LoginController';
 import cors from 'cors';
 import { config } from 'dotenv';
 import express from "express";
@@ -51,9 +49,13 @@ mongoose.connect(env.DB_URL, {}).then(x => {
     rolesKey: 'security.roles'
   }));
 
+  //Register services
+  requireDir('src/services/', { recurse: true });
+
   //Register controllers
-  Server.buildServices(app, LoginController);
-  Server.buildServices(app, CardController);
+  for (const controller of Object.values(requireDir('src/controllers/', { recurse: true }))) {
+    Server.buildServices(app, controller.default);
+  }
 
   //Start server
   let port = 5000;

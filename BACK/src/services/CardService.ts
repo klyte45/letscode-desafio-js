@@ -1,12 +1,13 @@
 import { ICardDTO, ICardModel, MODEL_NAME } from "#interfaces/db/Card";
+import { ICardService } from "#interfaces/services/ICardService";
 import moment from "moment";
 import mongoose from "mongoose";
-import { OnlyInstantiableByContainer, Singleton } from "typescript-ioc";
+import { Container, OnlyInstantiableByContainer, Singleton } from "typescript-ioc";
 import { BadRequestError, NotFoundError } from "typescript-rest/dist/server/model/errors";
 
 @Singleton
 @OnlyInstantiableByContainer
-export class CardService {
+class CardService implements ICardService {
 
     private dbModel: ICardModel = mongoose.model(MODEL_NAME) as ICardModel;
 
@@ -65,3 +66,5 @@ export class CardService {
     }
 
 }
+
+Container.bind(ICardService).to(CardService);

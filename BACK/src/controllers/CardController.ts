@@ -1,13 +1,15 @@
-import { CardService } from '#services/CardService';
+
+import { ICardService } from '#interfaces/services/ICardService';
 import { Response } from 'express';
 import { Inject } from 'typescript-ioc';
-import { ContextResponse, DELETE, GET, Path, PathParam, POST, PUT } from "typescript-rest";
+import { ContextResponse, DELETE, GET, Path, PathParam, POST, PUT, Security } from "typescript-rest";
 
 @Path("/cards")
-export class CardController {
+@Security()
+export default class CardController {
 
     @Inject
-    private service!: CardService;
+    private service!: ICardService;
 
     @POST
     async doCreate(requestBody: any, @ContextResponse res: Response) {

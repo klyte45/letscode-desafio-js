@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  desafio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: desafio
+    environment:
+      NODE_ENV: prod     
+      DEFAULT_LOGIN: "${DEFAULT_LOGIN}"
+      DEFAULT_PASSWORD: "${DEFAULT_PASSWORD}"
+      TOKEN_SECRET: "${TOKEN_SECRET}"
+      DB_URL: "mongodb://172.25.3.18:27017/defaultDB"
+    ports:
+      - "127.0.0.1:5000:5000"
+    networks:
+      appNetwork:
+        ipv4_address: 172.25.3.2
+  mongodb:
+    image: mongo:5.0
+    container_name: mongodb
+    ports:
+      - "127.0.0.1:27017:27017"
+    networks:
+      appNetwork:
+        ipv4_address: 172.25.3.18
+networks:
+  appNetwork:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.25.3.0/24"
+volumes:
+  logvolume01: {}

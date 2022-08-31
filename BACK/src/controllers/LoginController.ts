@@ -5,7 +5,7 @@ import { env } from "process";
 import { ContextResponse, Errors, Path, POST } from "typescript-rest";
 
 @Path("/login")
-export class LoginController {
+export default class LoginController {
     @POST
     doLogin(loginRequest: LoginRequest, @ContextResponse res: Response) {
         if (loginRequest.login === env.DEFAULT_LOGIN && loginRequest.senha === env.DEFAULT_PASSWORD) {

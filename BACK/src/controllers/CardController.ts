@@ -1,5 +1,5 @@
-import { Response } from 'express';
 import { CardService } from '#services/CardService';
+import { Response } from 'express';
 import { Inject } from 'typescript-ioc';
 import { ContextResponse, DELETE, GET, Path, PathParam, POST, PUT } from "typescript-rest";
 
@@ -29,3 +29,4 @@ export class CardController {
         return await this.service.list();
     }
 }
+

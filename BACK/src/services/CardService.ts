@@ -1,7 +1,8 @@
-import { ICardBase, ICardDTO, ICardModel, MODEL_NAME } from "#interfaces/db/Card";
+import { ICardDTO, ICardModel, MODEL_NAME } from "#interfaces/db/Card";
+import moment from "moment";
 import mongoose from "mongoose";
 import { OnlyInstantiableByContainer, Singleton } from "typescript-ioc";
-import { BadRequestError, NotFoundError } from "typescript-rest/dist/server-errors";
+import { BadRequestError, NotFoundError } from "typescript-rest/dist/server/model/errors";
 
 @Singleton
 @OnlyInstantiableByContainer
@@ -45,6 +46,8 @@ export class CardService {
         dbObject.titulo = dataToModify.titulo;
         dbObject.conteudo = dataToModify.conteudo;
         dbObject.lista = dataToModify.lista;
+        console.log(`${moment().format("DD/MM/YYYY HH:mm:ss")} - Card ${id} - ${dbObject.titulo} - Alterado`)
+
         return (await dbObject.save()).toJSON() as ICardDTO;
     }
 
@@ -53,9 +56,11 @@ export class CardService {
     }
 
     public async delete(id: string) {
-        if (!(await this.dbModel.findByIdAndDelete(id))) {
+        const deletedObj = await this.dbModel.findByIdAndDelete(id);
+        if (!deletedObj) {
             throw new NotFoundError();
         }
+        console.log(`${moment().format("DD/MM/YYYY HH:mm:ss")} - Card ${id} - ${deletedObj.titulo} - Removido`)
         return this.list();
     }
 

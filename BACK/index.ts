@@ -1,3 +1,4 @@
+import { CardController } from '#controllers/CardController';
 import { LoginController } from '#controllers/LoginController';
 import cors from 'cors';
 import { config } from 'dotenv';
@@ -5,9 +6,8 @@ import express from "express";
 import mongoose from 'mongoose';
 import { ExtractJwt, Strategy } from "passport-jwt";
 import { env } from "process";
-import { PassportAuthenticator, Server } from "typescript-rest";
 import requireDir from 'require-dir';
-import { CardController } from '#controllers/CardController';
+import { PassportAuthenticator, Server } from "typescript-rest";
 
 //Setup environment
 if (env.NODE_ENV == "prod") {

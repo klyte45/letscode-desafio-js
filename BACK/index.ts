@@ -5,22 +5,19 @@ import { ExtractJwt, Strategy } from "passport-jwt";
 import { env } from "process";
 import { PassportAuthenticator, Server } from "typescript-rest";
 import { v4 as uuid } from 'uuid';
+import { config } from 'dotenv'
+
 
 //Setup environment
 if (env.NODE_ENV == "prod") {
   console.log('====PROD MODE====');
-  if (!env.DEFAULT_LOGIN || env.DEFAULT_PASSWORD) {
-    throw new Error("Username and password environment variables must be set!");
-  }
-  if (!env.TOKEN_SECRET) {
-    env.TOKEN_SECRET = uuid()
-  }
+  if (!env.DEFAULT_LOGIN || !env.DEFAULT_PASSWORD || !env.TOKEN_SECRET) {
+    throw new Error("DEFAULT_LOGIN, DEFAULT_PASSWORD and TOKEN_SECRET environment variables must be set!");
+  }  
 } else {
   console.log('=====DEV MODE====');
+  config();
   env.DEV = "T";
-  env.DEFAULT_LOGIN = "letscode";
-  env.DEFAULT_PASSWORD = "lets@123";
-  env.TOKEN_SECRET = "12345678901234567890";
 }
 
 //Setup server

@@ -8,6 +8,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
     "target": "es5",
     "typeRoots": [
       "node_modules/@types"
@@ -26,14 +27,8 @@
       "#interfaces/*": [
         "src/interfaces/*"
       ],
-      "#exception/*": [
-        "src/exception/*"
-      ],
-      "#utils/*": [
-        "src/utils/*"
-      ],
-      "#service/*": [
-        "src/service/*"
+      "#services/*": [
+        "src/services/*"
       ]
     }
   }

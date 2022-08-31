@@ -4,14 +4,20 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: desafio    
+    container_name: desafio
     environment:
       NODE_ENV: prod     
       DEFAULT_LOGIN: ""
       DEFAULT_PASSWORD: ""
       TOKEN_SECRET: ""
+      DB_URL: "mongodb://localhost:27017/defaultDB"
     ports:
       - "127.0.0.1:5000:5000"
       - "127.0.0.1:3000:3000"
+  mongodb:
+    image: mongo:5.0
+    container_name: mongodb
+    ports:
+      - "127.0.0.1:27017:27017"
 volumes:
   logvolume01: {}

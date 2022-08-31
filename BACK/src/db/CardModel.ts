@@ -27,4 +27,4 @@ schema.set('toJSON', {
     }
 });
 
-mongoose.model<ICard>(MODEL_NAME, schema) as ICardModel;
+export default mongoose.model<ICard>(MODEL_NAME, schema) as ICardModel;

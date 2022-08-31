@@ -6,10 +6,11 @@ import { Container, OnlyInstantiableByContainer, Singleton } from "typescript-io
 import { BadRequestError, NotFoundError } from "typescript-rest/dist/server/model/errors";
 
 @Singleton
-@OnlyInstantiableByContainer
-class CardService implements ICardService {
+export class CardService implements ICardService {
 
-    private dbModel: ICardModel = mongoose.model(MODEL_NAME) as ICardModel;
+    constructor(
+        private dbModel: ICardModel = mongoose.model(MODEL_NAME) as ICardModel
+    ) { };
 
     public async create(input: any) {
         if (

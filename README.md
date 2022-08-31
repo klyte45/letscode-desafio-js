@@ -23,7 +23,6 @@
 > Foi usada uma arquitetura que evita que as camadas conversem diretamente entre si: todas as classes usam as abstrações e interfaces dentro do caminho `/src/interfaces` para obter as fachadas de serviços.
 - Essa visão evita as possíveis referências circulares entre os arquivos de classes além de facilitar os mocks nos testes.
 - O apelido `#interfaces` foi criado para evitar o uso de caminhos relativos no import e foi declarado no tsconfig.
-- Isso implicou também em todas as classes de serviços e banco de dados não exportarem nenhum item, por não haver necessidade. As classes de controller exportam pois necessitariam do objeto `express.Application` para conseguir serem registrados.
 - As classes de interfaces não se importam entre si, com exceção da classe que contém conteúdo comum. Nesse projeto, apenas o banco de dados teve uma classe comum para as interfaces dela, que seria compartilhada com outras classes caso houvessem, e foi separado desta forma pois são campos de controle criados por padrão pelo Mongoose.
 
 > Foi utilizado o `Mongoose` para abstração das classes de repositório, podendo carregar os Models para acesso pela classe principal do próprio framework via `mongoose.model()`.
@@ -39,3 +38,7 @@
 
 > Foi omitida a classe de serviço de login, já que neste exercício ela só teria um método que seria praticamente estático pelos os parâmetros do desafio.
 
+> Foram criados testes apenas para a classe de serviço de Cards, já que é o único lugar que há complexidade de regras nesse projeto.
+- Como a carga das classes de serviço é dinâmica lendo todos os arquivos .ts das pastas, foi adicionada uma verificação de variável de ambiente para, caso não esteja em teste, as classes de teste sejam ignoradas.
+- Na imagem docker, os testes são rodados antes do término da build.
+- Os testes poderiam também ser extendidos a outros lugares, como a conversão toJSON do objeto de cards.

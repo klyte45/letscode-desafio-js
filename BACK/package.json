@@ -1,0 +1,26 @@
+{
+  "name": "desafio-tecnico-backend",
+  "version": "1.0.0",
+  "description": "Desafio técnico backend",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "nodemon --exec ts-node ./index.ts",
+    "start": "ts-node ./"
+  },
+  "keywords": [],
+  "author": "Klyte",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "gulp": "^4.0.2",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.6.1",
+    "typescript-ioc": "^3.2.2",
+    "typescript-rest": "^1.1.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.0.39",
+    "@types/node": "^8.0.47",
+    "nodemon": "^2.0.19"
+  }
+}

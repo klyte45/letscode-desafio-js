@@ -2,7 +2,7 @@
 
 ## Execução
 
-- `docker-compose up` irá subir o backend com o banco de dados. O front-end deve ser iniciado a parte.
+- `docker-compose up` irá subir o backend com o banco de dados. O front-end deve ser iniciado a parte. (Tive problemas em colocar o yarn no Docker, não estou acostumado...)
 - As portas 5000 (Backend) e 27017 (acesso ao MongoDB) serão expostas para o a máquina host
 - É necessário adicionar um arquivo `.env` com as seguintes propriedades para a imagem funcionar:
 > `DEFAULT_LOGIN`: Login padrão para gerar o token

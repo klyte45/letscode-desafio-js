@@ -6,7 +6,9 @@ services:
       dockerfile: Dockerfile
     container_name: desafio    
     environment:
-      NODE_ENV: prod      
+      NODE_ENV: prod     
+      DEFAULT_LOGIN: letscode
+      DEFAULT_PASSWORD: lets@123 
     ports:
       - "127.0.0.1:5000:5000"
       - "127.0.0.1:3000:3000"
